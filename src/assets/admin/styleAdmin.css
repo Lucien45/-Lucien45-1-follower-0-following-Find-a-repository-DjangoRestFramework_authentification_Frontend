@@ -1,0 +1,159 @@
+/* ADMIN LAYOUT */
+.adminPage{
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+.contentPageAdmin{
+    width: 100%;
+    height: 100vh;
+}
+
+.outlet-page{
+    padding: 10px;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* AUTHENTIFICATION */
+.authentification{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+    .authentification  .logo-auth{
+        width: 800px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+        .logo-auth img{
+            width: 80%;
+            height: 80%;
+        }
+
+    /**/
+    .authentification .input-auth{
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+        .input-auth h2{
+            color:#168f16;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .input-auth .control{
+            margin: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border: 2px solid #38384d52;
+            padding: 5px;
+            border-radius: 10px;
+        }
+            .input-auth .control i{
+                margin-left: 10px;
+            }
+            .input-auth .control input{
+                width: 350px;
+                border: 0;
+                background-color: #fff;
+                margin-left: 5px;
+            }
+            .input-auth .control input::selection{
+                border: 0;
+                background-color: #fff;
+            }
+
+        .input-auth .btn-auth{
+            background-color: #168f16;
+            padding: 10px;
+            border-radius: 10px;
+            border: 0;
+            width: 400px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .input-auth .create-compte{
+            margin-top: 20px;
+            font-size: 12px;
+        }
+            .create-compte a{
+                color: #168f16;
+                text-decoration: none;
+            }
+       
+
+/* -------------------------------------------------------------------------- */
+                /* TABLE STYLE */
+/* -------------------------------------------------------------------------- */
+   /* Table.css */
+   .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  .styled-table th,
+  .styled-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .styled-table thead th {
+    background-color: #f2f2f2;
+  }
+  
+  .styled-table tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+
+  .styled-table td a{
+    color: black;
+    cursor: pointer;
+    }
+
+    .styled-table td img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .styled-table td i{
+        color: black;
+        cursor: pointer;
+    }
+    .styled-table td button{
+        border: 0;
+    }
+
+/* -------------------------------------------------------------------------- */
+                /*  STYLE TITRE PAGE */
+/* -------------------------------------------------------------------------- */
+ .navbarPage{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--white-color);
+    box-shadow: var( --box-shadow-navbar);
+    z-index: 1;
+ }
+   
+    .navbarPage a{
+        color: var(--white-color-clair);
+        text-decoration: none;
+    }
