@@ -1,19 +1,11 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import './App.css';
+import { UserService } from './_services/User.service';
 
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.withCredentials = true;
 
-const client = axios.create({
-  baseURL: "http://localhost:8000"
-});
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
@@ -25,7 +17,7 @@ function App() {
 
 
   useEffect(() => {
-    client.get("/api/user")
+    UserService.getUser()
     .then(function(res) {
       setCurrentUser(true);
       setDataUser(res.data.user);
@@ -48,21 +40,19 @@ function App() {
 
   function submitRegistration(e) {
     e.preventDefault();
-    client.post(
-      "/api/register",
-      {
+    var dataReg = {
+      email: email,
+      username: username,
+      password: password
+    };
+    UserService.SignUp(dataReg)
+    .then(function(res) {
+      var dataLog = {
         email: email,
-        username: username,
         password: password
-      }
-    ).then(function(res) {
-      client.post(
-        "/api/login",
-        {
-          email: email,
-          password: password
-        }
-      ).then(function(res) {
+      };
+      UserService.SignIn(dataLog)
+      .then(function(res) {
         setCurrentUser(true);
       });
     });
@@ -70,23 +60,23 @@ function App() {
 
   function submitLogin(e) {
     e.preventDefault();
-    client.post(
-      "/api/login",
-      {
-        email: email,
-        password: password
-      }
-    ).then(function(res) {
+    var data = {
+      email: email,
+      password: password
+    };
+    UserService.SignIn(data)
+    .then(function(res) {
       setCurrentUser(true);
     });
   }
 
   function submitLogout(e) {
     e.preventDefault();
-    client.post(
-      "/api/logout",
-      {withCredentials: true}
-    ).then(function(res) {
+    var credential = {
+      withCredentials: true
+    };
+    UserService.SignOut(credential)
+    .then(function(res) {
       setCurrentUser(false);
     });
   }
