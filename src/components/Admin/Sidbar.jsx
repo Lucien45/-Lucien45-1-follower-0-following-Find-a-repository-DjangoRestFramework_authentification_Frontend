@@ -1,116 +1,119 @@
 import React, { useEffect, useState } from 'react';
 import { FaBars, FaBook, FaChalkboardTeacher, FaEllipsisV, FaTachometerAlt, FaUser } from 'react-icons/fa';
-import { MdMeetingRoom } from "react-icons/md";
-import { PiStudentFill } from "react-icons/pi";
+import { MdMeetingRoom } from 'react-icons/md';
+import { PiStudentFill } from 'react-icons/pi';
 import { Link, useLocation } from 'react-router-dom';
 import { UserService } from '../../_services/User.service';
-const Sidbar = () => {
-    const[dataUser, setDataUser] = useState([]);
-    const[status, setStatus] = useState();
+
+const Sidebar = () => {
+    const [dataUser, setDataUser] = useState([]);
+    const [status, setStatus] = useState();
     const [activeTab, setActiveTab] = useState('Dashboard');
     const location = useLocation();
-    const [reduice, setReduice] = useState(false);
+    const [reduce, setReduce] = useState(false);
 
-    const reduiceSidebar = () => {
-        const sidebarSolarma =  document.getElementById("sidebarFront");
-        const logoS =  document.getElementById("logoS");
+    const reduceSidebar = () => {
+        const sidebar = document.getElementById("sidebarFront");
+        const logo = document.getElementById("logoS");
 
-        sidebarSolarma.classList.toggle("miniSidebar");
-        logoS.classList.toggle("logoReduice");
-    }
+        sidebar.classList.toggle("miniSidebar");
+        logo.classList.toggle("logoReduce");
+    };
 
-    const reduiceTab = () => {
-        setReduice(true)
-    }
-    const agrandirTab = () => {
-        setReduice(false)
-    }
+    const reduceTab = () => {
+        setReduce(true);
+    };
+    const expandTab = () => {
+        setReduce(false);
+    };
+
     useEffect(() => {
         UserService.getUser()
-        .then(function(res) {
-          setDataUser(res.data.user);
-          console.log(res.data);
-          if (res.data.user.is_admin == true) {
-            setStatus('Administrateur')
-          } else {
-            setStatus('Staff')
-          }
-        })
-        .catch(function(error) {
-          window.location.href='/'
-          Utils.errorPage(error.response.data.message)
-        });
-        if(location.pathname === '/admin'){
-            setActiveTab('Dashboard')
-        }else if (location.pathname === '/admin/prof'){
-            setActiveTab('Prof')
-        }else if (location.pathname === '/admin/etudiant'){
-            setActiveTab('Etudiant')
-        }else if (location.pathname === '/admin/classe'){
-            setActiveTab('Classe')
-        }else if (location.pathname === '/admin/matiere'){
-            setActiveTab('Matiere')
+            .then((res) => {
+                setDataUser(res.data.user);
+                if (res.data.user.is_admin) {
+                    setStatus('Administrateur');
+                } else {
+                    setStatus('Staff');
+                }
+            })
+            .catch((error) => {
+                window.location.href = '/';
+                Utils.errorPage(error.response.data.message);
+            });
+
+        if (location.pathname === '/admin') {
+            setActiveTab('Dashboard');
+        } else if (location.pathname === '/admin/post') {
+            setActiveTab('Post');
+        } else if (location.pathname === '/admin/tache') {
+            setActiveTab('Tache');
+        } else if (location.pathname === '/admin/classe') {
+            setActiveTab('Classe');
+        } else if (location.pathname === '/admin/matiere') {
+            setActiveTab('Matiere');
         }
-    }, [location.pathname])
-  return (
-    <div className='sidebar-container'>
-            <div className='logo-place'>
-               <div className='logo' id='logoS'>
-                    <div className='logo_min' id='mini-logo'><img src='../media/logo.png' alt='logo'/></div>
-               </div>
-               <div className='icon-bar'>
-                    <div className={`${!reduice ? "reduce_sidebar" : "desactiveMaxSidebar"}`} onClick={() => { reduiceSidebar(); reduiceTab(); }}><i><FaBars/></i></div>
-                    <div className={`${reduice ? "reduce_sidebar" : "desactiveMaxSidebar"}`} onClick={() => { reduiceSidebar(); agrandirTab(); }}><i><FaBars/></i></div>
-               </div>
-            </div>
-            <div className='profile-sidebar'>
-                <div className='profile-image'>
-                    <div className='' id='profile-image'><img src='../media/user.png' alt='profile'/></div>
+    }, [location.pathname]);
+
+    return (
+        <div className="sidebar-container">
+            <div className="logo-place">
+                <div className="logo" id="logoS">
+                    <div className="logo_min" id="mini-logo"><img src="../media/logo.png" alt="logo" /></div>
                 </div>
-                <div className={`${!reduice ? "profile-information" : "desactiveMaxSidebar"}`}>
-                    <div><span className='info-nom'>{dataUser.email}</span></div>
-                    <div><span className='info-fonction'>{status}</span></div>
-                </div>
-                <div className={`${!reduice ? "profile-parametre" : "desactiveMaxSidebar"}`} id='info-parametre'>
-                    <i><FaEllipsisV/></i>
+                <div className="icon-bar">
+                    <div className={`${!reduce ? "reduce_sidebar" : "desactiveMaxSidebar"}`} onClick={() => { reduceSidebar(); reduceTab(); }}><i><FaBars /></i></div>
+                    <div className={`${reduce ? "reduce_sidebar" : "desactiveMaxSidebar"}`} onClick={() => { reduceSidebar(); expandTab(); }}><i><FaBars /></i></div>
                 </div>
             </div>
-            <div className='navigation'>
-                <div className='titre'><span id='titre-navigation'>Navigation</span></div>
-                
-                <Link to='/admin'>
+            <div className="profile-sidebar">
+                <div className="profile-image">
+                    <div className="" id="profile-image"><img src="../media/user.png" alt="profile" /></div>
+                </div>
+                <div className={`${!reduce ? "profile-information" : "desactiveMaxSidebar"}`}>
+                    <div><span className="info-nom">{dataUser.email}</span></div>
+                    <div><span className="info-fonction">{status}</span></div>
+                </div>
+                <div className={`${!reduce ? "profile-parametre" : "desactiveMaxSidebar"}`} id="info-parametre">
+                    <i><FaEllipsisV /></i>
+                </div>
+            </div>
+            <div className="navigation">
+                <div className="titre"><span id="titre-navigation">Navigation</span></div>
+
+                <Link to="/admin">
                     <li className={`${activeTab === "Dashboard" ? "active" : ""}`} onClick={() => setActiveTab("Dashboard")}>
-                        <i className=''><FaTachometerAlt/></i>
-                        <span className={`${!reduice ? "" : "desactiveMaxSidebar"}`}>Dashboard</span>
+                        <i className=""><FaTachometerAlt /></i>
+                        <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Dashboard</span>
                     </li>
                 </Link>
-                <Link to='#'>
-                    <li className={`${activeTab === "Prof" ? "active" : ""}`} onClick={() => setActiveTab("Prof")}>
-                        <i className=''><FaChalkboardTeacher/></i>
-                        <span className={`${!reduice ? "" : "desactiveMaxSidebar"}`}>Professeur</span>
+                <Link to="/admin/post">
+                    <li className={`${activeTab === "Post" ? "active" : ""}`} onClick={() => setActiveTab("Post")}>
+                        <i className=""><FaChalkboardTeacher /></i>
+                        <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Posts</span>
                     </li>
                 </Link>
-                <Link to='#'>
-                    <li className={`${activeTab === "Etudiant" ? "active" : ""}`} onClick={() => setActiveTab("Etudiant")} >
-                        <i className=''><PiStudentFill/></i>
-                        <span className={`${!reduice ? "" : "desactiveMaxSidebar"}`}>Etudiant</span>
+                <Link to="/admin/tache">
+                    <li className={`${activeTab === "Tache" ? "active" : ""}`} onClick={() => setActiveTab("Tache")}>
+                        <i className=""><PiStudentFill /></i>
+                        <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Tache</span>
                     </li>
                 </Link>
-                <Link to='#'>
+                <Link to="#">
                     <li className={`${activeTab === "Classe" ? "active" : ""}`} onClick={() => setActiveTab("Classe")}>
-                        <i className=''><MdMeetingRoom/></i>
-                        <span className={`${!reduice ? "" : "desactiveMaxSidebar"}`}>Classe</span>
+                        <i className=""><MdMeetingRoom /></i>
+                        <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Classe</span>
                     </li>
                 </Link>
-                <Link to='#'>
+                <Link to="#">
                     <li className={`${activeTab === "Matiere" ? "active" : ""}`} onClick={() => setActiveTab("Matiere")}>
-                        <i className=''><FaBook/></i>
-                        <span className={`${!reduice ? "" : "desactiveMaxSidebar"}`}>Matiere</span>
+                        <i className=""><FaBook /></i>
+                        <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Matiere</span>
                     </li>
-                </Link>  
+                </Link>
             </div>
         </div>
-  )
+    );
 }
 
-export default Sidbar;
+export default Sidebar;

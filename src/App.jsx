@@ -15,7 +15,7 @@ function App() {
         <ToastContainer position='top-center'/>
         <Routes>    
           <Route path="/*" element={<AuthRoute/>}/>
-          <Route path="/admin" element={<AdminRoute setLoading={setLoading}/>}/>
+          <Route path="/admin/*" element={<AdminRoute setLoading={setLoading}/>}/>
         </Routes>  
       </BrowserRouter>
     </ThemeProvider>

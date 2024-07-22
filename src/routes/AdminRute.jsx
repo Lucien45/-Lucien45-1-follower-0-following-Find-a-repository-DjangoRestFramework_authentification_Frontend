@@ -3,6 +3,9 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import AdminLayout from '../views/Admin/AdminLayout';
 import Page404 from '../views/Page404';
 import Dashboard from '../views/Admin/Dashboard';
+import Post from '../views/Admin/Post';
+import { AddEditPost, ListPost } from '../components/Admin/PostComp';
+import Tache from '../views/Admin/Tache';
 
 const AdminRoute = ({ setLoading }) => {
     const location = useLocation();
@@ -19,12 +22,21 @@ const AdminRoute = ({ setLoading }) => {
             clearTimeout(timeout);
         };
     }, [location, setLoading]);
+
     return (
         <Routes>
-            <Route element={<AdminLayout/>}>
-                <Route index element={<Dashboard/>}/>
-                <Route path='*' element={<Page404/>}/>
+            <Route element={<AdminLayout />}>
+                <Route index element={<Dashboard />} />
+                {/*----------- Post -----------*/}
+                <Route path="/post" element={<Post />}>
+                    <Route index element={<ListPost />} />
+                    <Route path="/post/addEditPost" element={<AddEditPost />} />
+                </Route>
+
+                {/* ---------Tache---------- */}
+                <Route path='/tache' element={<Tache/>}/>
             </Route>
+            <Route path="*" element={<Page404 />} />
         </Routes>
     );
 };
