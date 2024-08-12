@@ -5,6 +5,7 @@ import AuthRoute from "./routes/AuthRoute";
 import AdminRoute from "./routes/AdminRute";
 import { ThemeProvider } from "./components/other/ThemeContext";
 import LoadingSpinner from "./components/other/LoadingSpinner";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css'
 function App() {
   const [loading, setLoading] = useState(false);

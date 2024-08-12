@@ -10,7 +10,7 @@ let errorPage = (textError) => {
 }
 
 // Utils error
-let sucess = (textSuccess) => {
+let success = (textSuccess) => {
     Swal.fire({ icon: 'success', title: 'Message succès', text: textSuccess, });
 
 }
@@ -24,5 +24,5 @@ let PageNotFound = () =>{
 }
 
 export const Utils = {
-    errorPage, sucess, PageNotFound
+    errorPage, success, PageNotFound
 }

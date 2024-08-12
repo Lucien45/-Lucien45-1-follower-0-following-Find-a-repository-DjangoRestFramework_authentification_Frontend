@@ -31,6 +31,7 @@ const Sidebar = () => {
         UserService.getUser()
             .then((res) => {
                 setDataUser(res.data.user);
+                console.log(dataUser);
                 if (res.data.user.is_admin) {
                     setStatus('Administrateur');
                 } else {
@@ -59,7 +60,7 @@ const Sidebar = () => {
         <div className="sidebar-container">
             <div className="logo-place">
                 <div className="logo" id="logoS">
-                    <div className="logo_min" id="mini-logo"><img src="../media/logo.png" alt="logo" /></div>
+                    <div className="logo_min" id="mini-logo"><img src="../../../public/media/logo.png" alt="logo" /></div>
                 </div>
                 <div className="icon-bar">
                     <div className={`${!reduce ? "reduce_sidebar" : "desactiveMaxSidebar"}`} onClick={() => { reduceSidebar(); reduceTab(); }}><i><FaBars /></i></div>
@@ -68,7 +69,12 @@ const Sidebar = () => {
             </div>
             <div className="profile-sidebar">
                 <div className="profile-image">
-                    <div className="" id="profile-image"><img src="../media/user.png" alt="profile" /></div>
+                    <div className="" id="profile-image">
+                        <img 
+                            src={dataUser.image ? `http://localhost:8000/${dataUser.image}` : '../../../public/media/userdefault.png'} 
+                            alt={dataUser.username || 'Default User'} 
+                        />
+                    </div>
                 </div>
                 <div className={`${!reduce ? "profile-information" : "desactiveMaxSidebar"}`}>
                     <div><span className="info-nom">{dataUser.email}</span></div>

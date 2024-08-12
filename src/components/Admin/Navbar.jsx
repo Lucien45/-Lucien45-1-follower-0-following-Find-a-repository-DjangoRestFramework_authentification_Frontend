@@ -69,10 +69,13 @@ export const Navbar = () => {
             </div>
             <div className='info-user' onClick={togglePopup}>
                 <div className='profile-image'>
-                    <img src='../media/user.png' alt='profile' />
+                    <img 
+                        src={dataUser.image ? `http://localhost:8000/${dataUser.image}` : '../../../public/media/userdefault.png'} 
+                        alt={dataUser.username || 'Default User'} 
+                    />
                 </div>
                 <div className='profile-info'>
-                    <span><i><FaCaretDown /></i></span>
+                    <span>{dataUser.username}<i><FaCaretDown /></i></span>
                 </div>
                 {isPopupVisible && <UserProfilePopup dataUser={dataUser} onLogout={submitLogout} loading={loading} />}
             </div>

@@ -9,7 +9,6 @@ const AuthRoute = () => {
         <Routes>
             <Route path='/' element={<Login/>}/>
             <Route path='/create' element={<Create/>}/>
-            {/* <Route path='/admin' element={<AdminLayout/>}/> */}
             <Route path='*' element={<Page404/>}/>
         </Routes>
     );
