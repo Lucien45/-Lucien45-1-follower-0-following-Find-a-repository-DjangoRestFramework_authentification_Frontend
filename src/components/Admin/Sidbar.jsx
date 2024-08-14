@@ -49,18 +49,18 @@ const Sidebar = () => {
             setActiveTab('Post');
         } else if (location.pathname === '/admin/tache') {
             setActiveTab('Tache');
-        } else if (location.pathname === '/admin/classe') {
-            setActiveTab('Classe');
-        } else if (location.pathname === '/admin/matiere') {
-            setActiveTab('Matiere');
         }
     }, [location.pathname]);
 
     return (
-        <div className="sidebar-container">
+        <div className="sidebar-container" id='sidebarFront'>
             <div className="logo-place">
-                <div className="logo" id="logoS">
-                    <div className="logo_min" id="mini-logo"><img src="../../../public/media/logo.png" alt="logo" /></div>
+                <div className={`logo ${reduce ? "logoReduice" : ""}`} id='logoS'>
+                    <div className='logo-content'>
+                        <Link to='/admin'>
+                            <div className="logo_min" id="mini-logo"><img src="../../../public/media/logo.png" alt="logo" /></div>
+                        </Link>
+                    </div>
                 </div>
                 <div className="icon-bar">
                     <div className={`${!reduce ? "reduce_sidebar" : "desactiveMaxSidebar"}`} onClick={() => { reduceSidebar(); reduceTab(); }}><i><FaBars /></i></div>
@@ -103,18 +103,6 @@ const Sidebar = () => {
                     <li className={`${activeTab === "Tache" ? "active" : ""}`} onClick={() => setActiveTab("Tache")}>
                         <i className=""><PiStudentFill /></i>
                         <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Tache</span>
-                    </li>
-                </Link>
-                <Link to="#">
-                    <li className={`${activeTab === "Classe" ? "active" : ""}`} onClick={() => setActiveTab("Classe")}>
-                        <i className=""><MdMeetingRoom /></i>
-                        <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Classe</span>
-                    </li>
-                </Link>
-                <Link to="#">
-                    <li className={`${activeTab === "Matiere" ? "active" : ""}`} onClick={() => setActiveTab("Matiere")}>
-                        <i className=""><FaBook /></i>
-                        <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Matiere</span>
                     </li>
                 </Link>
             </div>

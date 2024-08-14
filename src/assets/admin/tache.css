@@ -1,0 +1,135 @@
+/* tache.css */
+.outlet-page {
+    max-height: 500px; /* Set the maximum height based on your design needs */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    padding: 20px;     /* Optional: Add padding if needed */
+    background-color: #f0f2f5; /* Optional: Adjust background color */
+    border-radius: 8px; /* Optional: Round the corners */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+}
+
+.tache-board {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f0f2f5;
+}
+
+.tache-column {
+    background-color: #e9ecef;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tache-content {
+    align-self: flex-start;
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: auto; /* Pour pousser le contenu vers le haut */
+}
+
+
+.tache-column h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #212529;
+}
+
+.tache-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+    transition: box-shadow 0.3s ease;
+    height: 100px; /* Ajustez cette hauteur selon vos besoins */
+}
+
+.tache-item:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tache-item span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.tache-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    font-size: 12px;
+    color: #868e96;
+    margin-top: auto; /* Pour pousser le footer vers le bas */
+}
+
+.tache-footer span {
+    margin-right: 10px;
+}
+
+.tache-code {
+    margin-right: auto; /* Pour aligner le code à gauche */
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-left: auto; /* Pour aligner l'avatar à droite */
+}
+
+.create-ticket button, .view-all-tickets {
+    background-color: #74c0fc;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.create-ticket button:hover, .view-all-tickets:hover {
+    background-color: #4dabf7;
+}
+
+.tache-liste,
+.create-ticket,
+.tache-liste li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tache-sousliste {
+    list-style-type: none;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create-ticket button, 
+.view-all-tickets {
+    display: block; /* Ensures the button takes up full width of parent if desired */
+    margin: 0; /* Removes any margin */
+}
+
+.tache-sousliste button {
+    width: 100%;
+    text-align: center;
+}

@@ -6,6 +6,7 @@ import Dashboard from '../views/Admin/Dashboard';
 import Post from '../views/Admin/Post';
 import { AddEditPost, ListPost } from '../components/Admin/PostComp';
 import Tache from '../views/Admin/Tache';
+import { AddEditTache, ListTache } from '../components/Admin/TacheComp';
 
 const AdminRoute = ({ setLoading }) => {
     const location = useLocation();
@@ -34,7 +35,10 @@ const AdminRoute = ({ setLoading }) => {
                 </Route>
 
                 {/* ---------Tache---------- */}
-                <Route path='/tache' element={<Tache/>}/>
+                <Route path='/tache' element={<Tache/>}>
+                    <Route index element={<ListTache />} />
+                    <Route path="/tache/addEditTache" element={<AddEditTache />} />
+                </Route>
             </Route>
             <Route path="*" element={<Page404 />} />
         </Routes>
