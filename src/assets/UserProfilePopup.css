@@ -1,0 +1,23 @@
+.user-actions li {
+    display: flex;
+    align-items: center;
+}
+
+.user-actions li a, .user-actions li button {
+    display: flex;
+    align-items: center;
+}
+
+.user-actions li a svg, .user-actions li button svg {
+    margin-right: 8px;
+}
+
+.user-actions button {
+    display: flex;
+    align-items: center;
+}
+
+.user-actions button span {
+    margin-left: 5px;
+}
+

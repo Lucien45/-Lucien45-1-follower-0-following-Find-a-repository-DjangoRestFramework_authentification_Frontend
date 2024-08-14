@@ -1,60 +1,28 @@
-import { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { UserService } from '../../_services/User.service';
-import { Utils } from '../../_utils/utils';
+import { Navbar } from '../../components/Admin/Navbar';
+import { Outlet } from 'react-router-dom';
+import Sidbar from '../../components/Admin/Sidbar';
+import { useTheme } from '../../components/other/ThemeContext';
+import { useEffect } from 'react';
 
 const AdminLayout = () => {
-
-    const[dataUser, setDataUser] = useState([]);
-
-    function submitLogout(e) {
-        e.preventDefault();
-        var credential = {
-          withCredentials: true
-        };
-        UserService.SignOut(credential)
-        .then(res=>{
-          Utils.sucess("Deconneion!")
-          window.location.href='/'
-        })
-        .catch((error) => {
-          Utils.errorPage(error.response.data.message)
-        })
-    }
+    const { theme } = useTheme();
     useEffect(() => {
-        UserService.getUser()
-        .then(function(res) {
-          setDataUser(res.data.user);
-          console.log(res.data);
-        })
-        .catch(function(error) {
-          Utils.errorPage(error.response.data.message)
-        });
-    }, []);
+        document.body.className = theme; // Appliquer le thème au corps
+    }, [theme]);
     return (
-        <div>
-            <Navbar bg="dark" variant="dark">
-               <Container>
-                 <Navbar.Brand>Authentication App</Navbar.Brand>
-                 <Navbar.Toggle />
-                 <Navbar.Collapse className="justify-content-end">
-                   <Navbar.Text>
-                     <form onSubmit={e => submitLogout(e)}>
-                       <Button type="submit" variant="light">Log out</Button>
-                     </form>
-                   </Navbar.Text>
-                 </Navbar.Collapse>
-               </Container>
-            </Navbar>
-            <div className="center">
-                 <h2>You're logged in!</h2>
+        <div className='adminPage'>
+            <div className='sidebar_admin' id='sidebarFront'>
+                <Sidbar />
             </div>
-            <div>
-                 <h1>Bienvenue, {dataUser.username}!</h1>
-                 <p>Email: {dataUser.email}</p>
+            <div className='contentPageAdmin'>
+                <div className='navbar_admin'>
+                    <Navbar />
+                </div>
+                <div className={`borderContenuAdmin ${theme}`}>
+                    <div className='contenuAdmin'>
+                        <Outlet />
+                    </div>
+                </div>
             </div>
         </div>
     );
