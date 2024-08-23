@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaBars, FaBook, FaChalkboardTeacher, FaEllipsisV, FaTachometerAlt, FaUser } from 'react-icons/fa';
+import { FaBars, FaBook, FaChalkboardTeacher, FaEllipsisV, FaTachometerAlt, FaUser, FaCog, FaFacebookMessenger } from 'react-icons/fa';
 import { MdMeetingRoom } from 'react-icons/md';
 import { PiStudentFill } from 'react-icons/pi';
 import { Link, useLocation } from 'react-router-dom';
@@ -49,6 +49,12 @@ const Sidebar = () => {
             setActiveTab('Post');
         } else if (location.pathname === '/admin/tache') {
             setActiveTab('Tache');
+        } else if (location.pathname === '/admin/settings') {
+            setActiveTab('Settings');
+        }else if (location.pathname === '/admin/messages') {
+            setActiveTab('Messages');
+        }else if (location.pathname === '/admin/profile') {
+            setActiveTab('Profile');
         }
     }, [location.pathname]);
 
@@ -105,6 +111,26 @@ const Sidebar = () => {
                         <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Tache</span>
                     </li>
                 </Link>
+                <Link to="/admin/messages">
+                    <li className={`${activeTab === "Messages" ? "active" : ""}`} onClick={() => setActiveTab("Messages")}>
+                        <i className=""><FaFacebookMessenger /></i>
+                        <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Messages</span>
+                    </li>
+                </Link>
+                <Link to="/admin/profile">
+                    <li className={`${activeTab === "Profile" ? "active" : ""}`} onClick={() => setActiveTab("Profile")}>
+                        <i className=""><FaUser /></i>
+                        <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Profile</span>
+                    </li>
+                </Link>
+                {status === 'Administrateur' && (
+                    <Link to="/admin/settings">
+                        <li className={`${activeTab === "Settings" ? "active" : ""}`} onClick={() => setActiveTab("Settings")}>
+                            <i className=""><FaCog /></i>
+                            <span className={`${!reduce ? "" : "desactiveMaxSidebar"}`}>Paramètres</span>
+                        </li>
+                    </Link>
+                )}
             </div>
         </div>
     );

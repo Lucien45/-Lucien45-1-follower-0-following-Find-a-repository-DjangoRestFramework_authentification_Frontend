@@ -7,6 +7,11 @@ import Post from '../views/Admin/Post';
 import { AddEditPost, ListPost } from '../components/Admin/PostComp';
 import Tache from '../views/Admin/Tache';
 import { AddEditTache, ListTache } from '../components/Admin/TacheComp';
+import Messages from '../views/Admin/Messages';
+import { AddMessage, ListMessage } from '../components/Admin/MessageComp';
+import Profile from '../views/Admin/Profile';
+import { AddEditProfile, GetProfile, ListAllProfile } from '../components/Admin/ProfileComp';
+import { Settings } from '../views/Admin/Settings';
 
 const AdminRoute = ({ setLoading }) => {
     const location = useLocation();
@@ -39,8 +44,21 @@ const AdminRoute = ({ setLoading }) => {
                     <Route index element={<ListTache />} />
                     <Route path="/tache/addEditTache" element={<AddEditTache />} />
                 </Route>
+                {/* ---------Messages---------- */}
+                <Route path='/messages' element={<Messages/>}>
+                    <Route index element={<ListMessage />} />
+                    <Route path="/messages/addEditMessage" element={<AddMessage />} />
+                </Route>
+                {/* ---------Profile---------- */}
+                <Route path='/profile' element={<Profile/>}>
+                    <Route index element={<GetProfile />} />
+                    <Route path="/profile/addProfile" element={<AddEditProfile />} />
+                </Route>
+
+                <Route path="/settings" element={<Settings />} />
+
+                <Route path="*" element={<Page404 />} />
             </Route>
-            <Route path="*" element={<Page404 />} />
         </Routes>
     );
 };
