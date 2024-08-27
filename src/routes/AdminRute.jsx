@@ -8,7 +8,7 @@ import { AddEditPost, ListPost } from '../components/Admin/PostComp';
 import Tache from '../views/Admin/Tache';
 import { AddEditTache, ListTache } from '../components/Admin/TacheComp';
 import Messages from '../views/Admin/Messages';
-import { AddMessage, ListMessage } from '../components/Admin/MessageComp';
+import { AddMessage, Inbox, ListMessage } from '../components/Admin/MessageComp';
 import Profile from '../views/Admin/Profile';
 import { AddEditProfile, GetProfile, ListAllProfile } from '../components/Admin/ProfileComp';
 import { Settings } from '../views/Admin/Settings';
@@ -46,7 +46,7 @@ const AdminRoute = ({ setLoading }) => {
                 </Route>
                 {/* ---------Messages---------- */}
                 <Route path='/messages' element={<Messages/>}>
-                    <Route index element={<ListMessage />} />
+                    <Route index element={<Inbox />} />
                     <Route path="/messages/addEditMessage" element={<AddMessage />} />
                 </Route>
                 {/* ---------Profile---------- */}
